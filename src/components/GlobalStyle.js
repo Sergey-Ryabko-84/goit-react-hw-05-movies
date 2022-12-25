@@ -32,6 +32,6 @@ export const GlobalStyle = createGlobalStyle`
     img {
     display: block;
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
     }
 `;
