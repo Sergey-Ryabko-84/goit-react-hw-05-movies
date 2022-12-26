@@ -2,6 +2,7 @@ import { getMovieCredits } from "api/moviesApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from 'components/Loader/Loader';
+import { CastWrapper, List, ListItem } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState(null)
@@ -23,29 +24,27 @@ const Cast = () => {
     return <p>No cast found for this movie</p>;
 
   return (
-    <>
+    <CastWrapper>
       {loading && <Loader />}
-      <ul>
+      <List>
         {cast.map(({ id, profile_path, name, character }) => (
-          <li key={id}>
-            <div>
-              <img
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w500${profile_path}`
-                    : 'https://i.stack.imgur.com/WmvM0.png'                  
-                }
-                alt={name}
-                width={100}
-                // height={150}
-              />
-              <p>{name}</p>
-              <p>Character: {character}</p>
-            </div>
-          </li>
+          <ListItem key={id}>
+            <img
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                  : 'https://i.stack.imgur.com/WmvM0.png'                  
+              }
+              alt={name}
+              width={120}
+              height={180}
+            />
+            <b>{name}</b>
+            <p>{character}</p>
+          </ListItem>
         ))}
-      </ul>
-    </>
+      </List>
+    </CastWrapper>
   );
 };
 

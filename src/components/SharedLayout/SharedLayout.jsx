@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
+import { Link, Nav } from './SharedLayout.styled';
 
 const navItems = [
   { href: '/', text: 'Home' },
@@ -11,13 +12,13 @@ export const SharedLayout = () => {
   return (
     <>
       <header>
-        <nav>
+        <Nav>
           {navItems.map(({ href, text }) => (
-            <NavLink key={href} to={href}>
+            <Link key={href} to={href}>
               {text}
-            </NavLink>
+            </Link>
           ))}
-        </nav>
+        </Nav>
       </header>
       <Suspense fallback={<Loader />}>
         <Outlet />

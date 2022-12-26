@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { BsSearch } from 'react-icons/bs';
 import { searchMovie } from 'api/moviesApi';
 import { Loader } from 'components/Loader/Loader';
+import { MoviesWrapper, ListLink, Input, Button, Form } from './Movies.styled';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -32,19 +34,28 @@ const Movies = () => {
   };
 
   return (
-    <main>
-      <form onSubmit={onSubmitForm}>
-        <input type="text" name="input" />
-        <button type="submit">Search</button>
-      </form>
+    <MoviesWrapper>
+      <Form onSubmit={onSubmitForm}>
+        <Input type="text" name="input" />
+        <Button type="submit"><BsSearch /></Button>
+      </Form>
       {loading && <Loader />}
       {movies.length > 0 && (
         <ul>
-          {movies.map(({ id, title }) => (
+          {movies.map(({ id, title, poster_path }) => (
             <li key={id}>
-              <Link to={`${id}`} state={{ from: location }}>
-                {title}
-              </Link>
+              <ListLink to={`${id}`} state={{ from: location }}>
+                <p>{title}</p>
+                <img
+                  src={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                      : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie.jpg'
+                  }
+                  alt={title}
+                  width={180}
+                />
+              </ListLink>
             </li>
           ))}
         </ul>
@@ -54,7 +65,7 @@ const Movies = () => {
           No movie was found for your query "<span>{searchQuery}</span>".
         </p>
       )}
-    </main>
+    </MoviesWrapper>
   );
 };
 

@@ -4,10 +4,10 @@ import { SpinnerWrapper } from './Loader.styled';
 export const Loader = () => (
   <SpinnerWrapper>
     <RotatingLines
-      strokeColor="#3f51b5"
+      strokeColor="#2b4055d0"
       strokeWidth="5"
       animationDuration="0.75"
-      width="64"
+      width="48"
       visible={true}
     />
   </SpinnerWrapper>
