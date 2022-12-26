@@ -1,6 +1,6 @@
 import { getMovieDetails } from 'api/moviesApi';
 import { Suspense, useEffect, useState } from 'react';
-import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 import { Loader } from 'components/Loader/Loader';
 import {
